@@ -1,20 +1,20 @@
-// Initializes the `users` service on path `/users`
-const hooks = require('./info.hooks');
-const createService = require('./info.class');
+// Initializes the `image` service on path `/image`
+const createService = require('./image.class.js');
+const hooks = require('./image.hooks');
 
 module.exports = function (app) {
+  
   const paginate = app.get('paginate');
 
   const options = {
-    paginate,
-    app
+    paginate
   };
 
   // Initialize our service with any options it requires
-  app.use('/info', createService(options));
+  app.use('/image', createService(options));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('info');
+  const service = app.service('image');
 
   service.hooks(hooks);
 };

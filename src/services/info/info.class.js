@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 var steem = require('steem')
+var {stickers, images} = require('@memeit.lol/images')
+var { getWeights } = require('./info.helper')
 class Service {
   constructor (options) {
     this.options = options || {};
@@ -38,12 +40,18 @@ class Service {
     } else if (params.query.type === 'comments') {
       let replies = await this.getReplies(params.query.author, params.query.permlink);
       return replies;
+    } else if (params.query.type === 'images') {
+      return images;
+    } else if (params.query.type === 'stickers') {
+      return stickers;
+    } else if (params.query.type === 'delegators') {
+      return await getWeights('memeit.lol', this.options.app.service('mods'))
     } else return [];
   }
 
   async get (id, params) {
     return {
-      
+
     };
   }
 
